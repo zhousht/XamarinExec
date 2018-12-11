@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HelloWorld.ContactList">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="Contacts" 
+                      IsGroupingEnabled="True"
+                      GroupDisplayBinding="{Binding Title}"
+                      GroupShortNameBinding="{Binding ShortTitle}" HasUnevenRows="True"
+                      ItemTapped="Contacts_ItemTapped"
+                      ItemSelected="Contacts_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="5">
+                                <Image Source="{Binding ImageUrl}"></Image>
+                                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding Name}"></Label>
+                                    <Label Text="{Binding Status}"></Label>
+                                </StackLayout>
+                                <Button Text="Follow" />
+                            </StackLayout>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Call" Clicked="Call_Clicked" CommandParameter="{Binding .}"></MenuItem>
+                                <MenuItem Text="Delete" Clicked="Delete_Clicked" CommandParameter="{Binding .}" IsDestructive="True"></MenuItem>
+                            </ViewCell.ContextActions>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
